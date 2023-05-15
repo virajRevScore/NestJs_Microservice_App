@@ -1,0 +1,19 @@
+import { Module } from '@nestjs/common';
+import { DataPipelineController } from './data_pipeline.controller';
+import { DataPipelineService } from './data_pipeline.service';
+import { RabbitMqModule, RabbitMqService } from '@app/common';
+import { ConfigModule } from '@nestjs/config';
+import * as Joi from 'joi'
+
+@Module({
+  imports: [ConfigModule.forRoot({
+    isGlobal : true ,
+    validationSchema : Joi.object({
+      RABBIT_MQ_URI : Joi.string().required(),
+      RABBIT_MQ_DATA_PIPELINE_QUEUE : Joi.string().required()
+    }) 
+  }) , RabbitMqModule],
+  controllers: [DataPipelineController],
+  providers: [DataPipelineService , RabbitMqService],
+})
+export class DataPipelineModule {}
