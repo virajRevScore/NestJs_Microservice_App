@@ -14,6 +14,6 @@ import * as Joi from 'joi'
     }) 
   }) , RabbitMqModule],
   controllers: [DataPipelineController],
-  providers: [DataPipelineService , RabbitMqService],
+  providers: [DataPipelineService],
 })
 export class DataPipelineModule {}

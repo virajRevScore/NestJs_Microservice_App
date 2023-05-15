@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class DataPipelineService {
-  getHello(): string {
-    return 'Hello World!';
+  private readonly logger = new Logger(DataPipelineService.name)
+ 
+  extractHubSpotData (hubSpotAccessToken : any) {
+    this.logger.log(`Token received ${hubSpotAccessToken} ... Starting data extraction`)
+    
   }
 }

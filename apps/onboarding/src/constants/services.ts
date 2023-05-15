@@ -1,0 +1,1 @@
+export const DATA_PIPELINE_SERVICE = 'DATA_PIPELINE'
