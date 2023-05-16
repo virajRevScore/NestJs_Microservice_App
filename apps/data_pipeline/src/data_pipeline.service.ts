@@ -6,6 +6,7 @@ export class DataPipelineService {
  
   extractHubSpotData (hubSpotAccessToken : any) {
     this.logger.log(`Token received ${hubSpotAccessToken} ... Starting data extraction`)
+    console.log('reached here')
     
   }
 }

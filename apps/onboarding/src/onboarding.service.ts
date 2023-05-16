@@ -12,15 +12,16 @@ export class OnboardingService {
     @Inject(DATA_PIPELINE_SERVICE) private dataPipelineClient: ClientProxy,
   ) {}
 
-  async addCRMDetailsService(request: AddCRMDetailsRequest) {
+  async addCRMDetailsService(request: AddCRMDetailsRequest , authentication : string) {
     const session = await this.onboardingDetailsRepository.startTransaction();
 
     try {
       const CRMOnboarding = this.onboardingDetailsRepository.create(request, {
         session,
       });
-      await lastValueFrom(this.dataPipelineClient.emit('HubSpot Access Token Received. Start Data pipeline!' , { request } ))
+      await lastValueFrom(this.dataPipelineClient.emit('HubSpot Access Token Received. Start Data pipeline!' , { request , Authentication : authentication } ))
       await session.commitTransaction()
+      console.log(CRMOnboarding)
       return CRMOnboarding
       
     } catch (error) {

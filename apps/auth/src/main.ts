@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   const configService = app.get(ConfigService);
   await app.startAllMicroservices();
-  return await app.listen(configService.get('PORT'));
+  await app.listen(configService.get('PORT'));
   //remove return is some random ass error pops up. i included it as typescript was bugging to get me to add a return statement with a promise
 }
 bootstrap();

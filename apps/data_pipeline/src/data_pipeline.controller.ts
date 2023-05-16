@@ -1,7 +1,7 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, UseGuards } from "@nestjs/common";
 import { DataPipelineService } from "./data_pipeline.service";
 import { Ctx, EventPattern, Payload, RmqContext } from "@nestjs/microservices";
-import { RabbitMqService } from "@app/common";
+import { JwtAuthGuard, RabbitMqService } from "@app/common";
 
 @Controller()
 export class DataPipelineController {
@@ -11,6 +11,7 @@ export class DataPipelineController {
   ) {}
 
   @EventPattern("HubSpot Access Token Received. Start Data pipeline!")
+  @UseGuards(JwtAuthGuard)
   async handleHubSpotTokenReceived(
     @Payload() data: any,
     @Ctx() context: RmqContext

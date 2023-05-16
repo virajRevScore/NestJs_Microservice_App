@@ -26,4 +26,4 @@ export class AuthController {
   async validateUser(@CurrentUser() user: User) {
     return user;
   }
-}
+} 
