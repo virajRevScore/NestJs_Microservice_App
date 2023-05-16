@@ -7,6 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(DataPipelineModule);
   const rmqService = app.get<RabbitMqService>(RabbitMqService)
   app.connectMicroservice(rmqService.getOptions('DATA_PIPELINE'))
-  await app.startAllMicroservices();
+  return await app.startAllMicroservices();
 }
 bootstrap();
